@@ -1,0 +1,121 @@
+import random
+
+word_list = ["aardvark", "babuino", "camelo", "baleia", "ornitorrinco"]
+max_lives = 6
+
+stages = [
+    """
+     -----
+     |   |
+         |
+         |
+         |
+         |
+    =========
+    """,
+    """
+     -----
+     |   |
+     O   |
+         |
+         |
+         |
+    =========
+    """,
+    """
+     -----
+     |   |
+     O   |
+     |   |
+         |
+         |
+    =========
+    """,
+    """
+     -----
+     |   |
+     O   |
+    /|   |
+         |
+         |
+    =========
+    """,
+    """
+     -----
+     |   |
+     O   |
+    /|\\  |
+         |
+         |
+    =========
+    """,
+    """
+     -----
+     |   |
+     O   |
+    /|\\  |
+    /    |
+         |
+    =========
+    """,
+    """
+     -----
+     |   |
+     O   |
+    /|\\  |
+    / \\  |
+         |
+    =========
+    """
+]
+
+chosen_word = random.choice(word_list)
+word_length = len(chosen_word)
+
+display = ["_"] * word_length
+used_letters = []
+lives = max_lives
+game_over = False
+
+print("🎮 Bem-vindo(a) ao Jogo da Forca!")
+
+while not game_over:
+
+    print(stages[max_lives - lives]) 
+    print(f"\nPalavra: {' '.join(display)}")
+    print(f"Vidas: {lives}")
+    print(f"Letras usadas: {', '.join(used_letters)}")
+
+    guess = input("\nAdivinhe uma letra: ").lower()
+
+    if len(guess) != 1 or not guess.isalpha():
+        print("⚠️ Digite uma letra válida.")
+        continue
+
+    if guess in used_letters:
+        print("🔁 Você já tentou essa letra.")
+        continue
+
+    used_letters.append(guess)
+
+    if guess in chosen_word:
+        print("✅ Correto!")
+
+        for position in range(word_length):
+            if chosen_word[position] == guess:
+                display[position] = guess
+    else:
+        lives -= 1
+        print("❌ Errado!")
+
+        if lives == 0:
+            game_over = True
+            print(stages[max_lives])
+            print("\n💀 Você perdeu!")
+            print(f"A palavra era: {chosen_word}")
+
+    if "_" not in display:
+        game_over = True
+        print("\n🏆 Você ganhou!")
+
+        print(f"A palavra era: {chosen_word}")
