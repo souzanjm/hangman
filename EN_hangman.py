@@ -1,6 +1,6 @@
 import random
 
-word_list = ["aardvark", "baboon", "camel", "python", "developer"]
+word_list = ["aardvark", "baboon", "camel", "whale", "platypus"]
 max_lives = 6
 
 stages = [
@@ -119,3 +119,4 @@ while not game_over:
         print("\n🏆 You win!")
 
         print(f"The word was: {chosen_word}")
+
