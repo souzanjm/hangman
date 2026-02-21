@@ -81,7 +81,7 @@ print("🎮 Welcome to Hangman!")
 
 while not game_over:
 
-    print(stages[max_lives - lives])  # 👈 desenho da forca
+    print(stages[max_lives - lives]) 
     print(f"\nWord: {' '.join(display)}")
     print(f"Lives: {lives}")
     print(f"Used letters: {', '.join(used_letters)}")
@@ -117,4 +117,5 @@ while not game_over:
     if "_" not in display:
         game_over = True
         print("\n🏆 You win!")
+
         print(f"The word was: {chosen_word}")
